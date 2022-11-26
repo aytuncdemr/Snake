@@ -4,11 +4,15 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+#include "Snake.hpp"
+
 class Game{
 
     sf::RenderWindow m_window;
 
     sf::Event m_event;
+
+    Snake m_snake;
 
     public:
 
