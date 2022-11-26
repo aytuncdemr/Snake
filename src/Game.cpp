@@ -19,7 +19,7 @@ void Game::draw(){
     m_window.clear();
 
     m_snake.draw_to(m_window);
-
+    
     m_window.display();
 
 }
