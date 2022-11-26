@@ -28,6 +28,8 @@ class Game{
 
         void handle_events();
 
+        void handle_mouse_events();
+
 };
 
 #endif

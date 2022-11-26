@@ -2,6 +2,8 @@
 
 Game::Game(const uint32_t &window_width, const uint32_t &window_height, const std::string &window_title):m_window{sf::VideoMode(window_width,window_height),window_title,sf::Style::Close | sf::Style::Titlebar}{
 
+    m_window.setFramerateLimit(120);
+
     std::cout << "[Game window initialized with " << window_width << "x" << window_height << "]" << std::endl;
 
 }
@@ -19,7 +21,7 @@ void Game::draw(){
     m_window.clear();
 
     m_snake.draw_to(m_window);
-    
+
     m_window.display();
 
 }
