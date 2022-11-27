@@ -24,6 +24,8 @@ class Snake{
 
     uint32_t m_speed;
 
+    bool is_game_over {false};
+
     public:
 
         Snake();

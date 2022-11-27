@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "Snake.hpp"
+#include "Bomb.hpp"
 #include "Food.hpp"
 
 class Game{
@@ -17,8 +18,12 @@ class Game{
     Snake m_snake;
 
     std::vector<Food*> m_foods;
+    std::vector<Bomb*> m_boombs;
+
 
     sf::Clock m_clock;
+
+    bool is_game_over {false};
 
     public:
 
@@ -32,6 +37,8 @@ class Game{
 
         void draw();
 
+        void update();
+
         void handle_events();
 
         void handle_mouse_events();
@@ -39,6 +46,12 @@ class Game{
         void check_snake_eat_food();
 
         void spawn_food(bool non_stop = false);
+
+        void check_snake_eat_bomb();
+
+        void spawn_bomb(bool non_stop = false);
+
+        void draw_game_over();
 
         ~Game(){ 
             

@@ -25,12 +25,16 @@ void Snake::create_head_shape(){
 }
 
 void Snake::update(){
+
+    if(!is_game_over){
     
-    check_direction_update(); // <- checking for direction update before the drawing. (cizimden once yılanın yonunun degistigini kontrol etme)
+        check_direction_update(); // <- checking for direction update before the drawing. (cizimden once yılanın yonunun degistigini kontrol etme)
 
-    follow_each_other(); // <- following each other for animation. (animasyon için yılan bloklarının birbirini takip etmesi)
+        follow_each_other(); // <- following each other for animation. (animasyon için yılan bloklarının birbirini takip etmesi)
 
-    move_head(); // <- updating snake's position before the drawing. (cizimden once yılanın pozisyonunu güncelleme)
+        move_head(); // <- updating snake's position before the drawing. (cizimden once yılanın pozisyonunu güncelleme)
+        
+    }
 
 }
 
