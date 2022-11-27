@@ -1,6 +1,6 @@
 #include "Snake.hpp"
 
-Snake::Snake():m_speed{5},m_current_direction{Direction(rand()%2+2)}{
+Snake::Snake():m_speed{5},m_current_direction{Direction(rand()%4)}{
 
     std::cout << "[Snake object created]" << std::endl;
 
@@ -127,7 +127,6 @@ void Snake::follow_each_other(){
         m_shapes[x].setPosition(m_shapes[x-1].getPosition());
 
     }
-
 
 }
 

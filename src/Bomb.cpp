@@ -1,6 +1,6 @@
 #include "Bomb.hpp"
 
-Bomb::Bomb():m_shape{sf::Vector2f(30,30)},m_life_span{rand()%4000 + 3000}{
+Bomb::Bomb():m_shape{sf::Vector2f(30,30)},m_life_span{rand()%4000 + 4000}{
 
     bomb_count++;
 

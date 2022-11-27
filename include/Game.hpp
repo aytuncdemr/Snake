@@ -20,10 +20,11 @@ class Game{
     std::vector<Food*> m_foods;
     std::vector<Bomb*> m_boombs;
 
-
     sf::Clock m_clock;
 
     bool is_game_over {false};
+
+    uint32_t m_score;
 
     public:
 
@@ -37,6 +38,8 @@ class Game{
 
         void draw();
 
+        void draw_score();
+
         void update();
 
         void handle_events();
@@ -48,6 +51,8 @@ class Game{
         void spawn_food(bool non_stop = false);
 
         void check_snake_eat_bomb();
+
+        void check_snake_out_of_bounds();
 
         void spawn_bomb(bool non_stop = false);
 

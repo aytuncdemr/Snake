@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Game::Game(const uint32_t &window_width, const uint32_t &window_height, const std::string &window_title):m_window{sf::VideoMode(window_width,window_height),window_title,sf::Style::Close | sf::Style::Titlebar}{
+Game::Game(const uint32_t &window_width, const uint32_t &window_height, const std::string &window_title):m_window{sf::VideoMode(window_width,window_height),window_title,sf::Style::Close | sf::Style::Titlebar},m_score{0}{
 
     m_window.setFramerateLimit(120);
 
@@ -26,11 +26,11 @@ void Game::spawn_food(bool non_stop){
 
     static sf::Clock last_spawn_time;
 
-    static int rand_next_spawn_time = rand() % 2000;
+    static int rand_next_spawn_time = rand() % 1000 - m_score / 10;
 
     if(last_spawn_time.getElapsedTime().asMilliseconds() > rand_next_spawn_time or non_stop){
 
-        rand_next_spawn_time = rand() % 2000;
+        rand_next_spawn_time = rand() % 1000 - m_score / 10;
 
         last_spawn_time.restart();
 
@@ -44,17 +44,37 @@ void Game::spawn_bomb(bool non_stop){
 
     static sf::Clock last_spawn_time;
 
-    static int rand_next_spawn_time = rand() % 2000;
+    static int rand_next_spawn_time = rand() % 2000 - m_score / 10; 
 
     if(last_spawn_time.getElapsedTime().asMilliseconds() > rand_next_spawn_time or non_stop){
 
-        rand_next_spawn_time = rand() % 2000;
+        rand_next_spawn_time = rand() % 2000 - m_score /10;
 
         last_spawn_time.restart();
 
         m_boombs.push_back(new Bomb{});
 
     }
+
+}
+
+void Game::check_snake_out_of_bounds(){
+
+    sf::Vector2f head_pos = m_snake.m_shapes[0].getPosition();
+
+    if(head_pos.x > 1400)
+        head_pos.x = 0;        
+
+    if(head_pos.x < 0)
+        head_pos.x = 1400;
+
+    if(head_pos.y < 0)
+        head_pos.y = 800;
+
+    if(head_pos.y > 800)
+        head_pos.y = 0;
+
+    m_snake.m_shapes[0].setPosition(head_pos);
 
 }
 
@@ -72,8 +92,38 @@ void Game::draw(){
 
     if(is_game_over)
         draw_game_over();
+    
+    draw_score();
 
     m_window.display();
+
+}
+
+void Game::draw_score(){
+    
+    static bool font_loaded {false};
+
+    sf::Text score_text;
+
+    static sf::Font font;
+
+    if(!font_loaded){
+    
+        font.loadFromFile("./Data/Milky Honey.ttf");
+    
+        font_loaded = true;
+
+    }
+
+    score_text.setCharacterSize(40);
+
+    score_text.setFont(font);
+
+    score_text.setString(std::string{"Score:"} + std::to_string(m_score));
+
+    score_text.setFillColor({255,100,100});
+
+    m_window.draw(score_text);
 
 }
 
@@ -88,6 +138,8 @@ void Game::update(){
         check_snake_eat_food();
 
         check_snake_eat_bomb();
+
+        check_snake_out_of_bounds();
 
         eatable_life_span_check();
     
@@ -130,9 +182,13 @@ void Game::check_snake_eat_food(){
 
                 std::cout << "[Score +100]" << std::endl;
             
+                m_score += 100;
+
                 m_snake.expand();
 
                 m_foods.erase(m_foods.begin()+x);
+
+                m_snake.m_speed += 0.5f;
 
             }
 
@@ -141,9 +197,13 @@ void Game::check_snake_eat_food(){
 
                 std::cout << "[Score +100]" << std::endl;
             
+                m_score += 100;
+
                 m_snake.expand();
 
                 m_foods.erase(m_foods.begin()+x);
+
+                m_snake.m_speed += 0.5f;
 
             }
 
@@ -181,7 +241,6 @@ void Game::check_snake_eat_bomb(){
                 m_snake.is_game_over = true;
 
             }
-
 
     }
 

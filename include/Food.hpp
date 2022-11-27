@@ -7,6 +7,8 @@ class Food{
 
     friend class Game;
 
+    friend class Train;
+
     sf::RectangleShape m_shape;
 
     static inline sf::Texture m_texture;

@@ -22,7 +22,7 @@ class Snake{
 
     Direction m_current_direction;
 
-    uint32_t m_speed;
+    float m_speed;
 
     bool is_game_over {false};
 

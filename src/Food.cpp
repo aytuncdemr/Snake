@@ -1,6 +1,6 @@
 #include "Food.hpp"
 
-Food::Food():m_shape{sf::Vector2f{30,30}},m_life_span{rand()%4000 + 3000}{
+Food::Food():m_shape{sf::Vector2f{30,30}},m_life_span{rand()%4000 + 4000}{
 
     food_count++;
 
