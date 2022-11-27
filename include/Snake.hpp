@@ -30,9 +30,15 @@ class Snake{
 
         void draw_to(sf::RenderWindow &target_window);
 
-        void move();
+        void move_head();
 
-        void set_direction();
+        void check_direction_update();
+
+        void expand();
+
+        void follow_each_other();
+
+        void update();
 
 };
 

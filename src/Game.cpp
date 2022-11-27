@@ -53,6 +53,13 @@ void Game::handle_events(){
 
         switch (m_event.type){
 
+            case sf::Event::KeyPressed:
+
+                if(m_event.key.code == sf::Keyboard::Key::Space)
+                    m_snake.expand();
+
+                break;
+
             case sf::Event::Closed:
 
                 close();
