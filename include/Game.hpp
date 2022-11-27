@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 #include "Snake.hpp"
+#include "Food.hpp"
 
 class Game{
 
@@ -13,6 +15,10 @@ class Game{
     sf::Event m_event;
 
     Snake m_snake;
+
+    std::vector<Food*> m_foods;
+
+    sf::Clock m_clock;
 
     public:
 
@@ -29,6 +35,18 @@ class Game{
         void handle_events();
 
         void handle_mouse_events();
+
+        void check_snake_eat_food();
+
+        void spawn_food(bool non_stop = false);
+
+        ~Game(){ 
+            
+            for(Food *&food:m_foods)
+                    delete food;
+        
+
+        }
 
 };
 

@@ -14,4 +14,6 @@ int main(){
 
     game.start();
 
+
+    std::cout << std::endl;
 }

@@ -16,6 +16,8 @@ enum class Direction{
 
 class Snake{
 
+    friend class Game;
+
     std::vector <sf::RectangleShape> m_shapes;
 
     Direction m_current_direction;
