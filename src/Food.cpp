@@ -1,6 +1,6 @@
 #include "Food.hpp"
 
-Food::Food():m_shape{sf::Vector2f{30,30}}{
+Food::Food():m_shape{sf::Vector2f{30,30}},m_life_span{rand()%4000 + 3000}{
 
     food_count++;
 
@@ -17,4 +17,10 @@ void Food::draw_to(sf::RenderWindow &target_window){
 
     target_window.draw(m_shape);
 
+}
+
+bool Food::is_life_span_end(){
+
+
+    return (m_life_span_clock.getElapsedTime().asMilliseconds() > m_life_span);
 }

@@ -13,11 +13,17 @@ class Food{
 
     static inline int food_count {0};
 
+    uint32_t m_life_span;
+
+    sf::Clock m_life_span_clock;
+
     public:
 
         Food();
 
         void draw_to(sf::RenderWindow &target_window);
+
+        bool is_life_span_end();
 
 };
 

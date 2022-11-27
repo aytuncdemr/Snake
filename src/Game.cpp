@@ -88,6 +88,8 @@ void Game::update(){
         check_snake_eat_food();
 
         check_snake_eat_bomb();
+
+        eatable_life_span_check();
     
     }
 
@@ -182,6 +184,25 @@ void Game::check_snake_eat_bomb(){
 
 
     }
+
+}
+
+void Game::eatable_life_span_check(){
+
+    for(int x{0};x<m_foods.size();x++){
+
+        if(m_foods[x]->is_life_span_end())
+            m_foods.erase(m_foods.begin()+x);
+
+    }
+
+    for(int x{0};x<m_boombs.size();x++){
+        
+        if(m_boombs[x]->is_life_span_end())
+            m_boombs.erase(m_boombs.begin()+x);
+
+    }
+
 
 }
 

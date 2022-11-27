@@ -53,6 +53,8 @@ class Game{
 
         void draw_game_over();
 
+        void eatable_life_span_check();
+
         ~Game(){ 
             
             for(Food *&food:m_foods)
