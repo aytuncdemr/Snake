@@ -2,13 +2,13 @@
 
 Game::Game(const uint32_t &window_width, const uint32_t &window_height, const std::string &window_title):m_window{sf::VideoMode(window_width,window_height),window_title,sf::Style::Close | sf::Style::Titlebar},m_score{0}{
 
-    m_window.setFramerateLimit(120);
-
     std::cout << "[Game window initialized with " << window_width << "x" << window_height << "]" << std::endl;
 
 }
 
 void Game::start(){
+
+    m_window.setFramerateLimit(120);
 
     std::cout << "[Starting Game]" << std::endl;
 
@@ -20,6 +20,18 @@ void Game::start(){
 
     main_loop();
 
+}
+
+void Game::create_game_over_buttons(){
+
+    Button retry_button (570,360,200,65,{255,0,0},ButtonText{620,370,"RETRY",{0,255,255},30},(int)ButtonType::RETRY);
+    Button return_to_menu_button (570,440,200,65,{255,0,0},ButtonText{578,457,"RETURN MENU",{0,255,255},25},(int)ButtonType::RETURN_TO_MAIN_MENU);
+
+    Button::set_button_target_window(m_window);
+
+    m_buttons.push_back(retry_button);
+    m_buttons.push_back(return_to_menu_button);
+    
 }
 
 void Game::spawn_food(bool non_stop){
@@ -179,8 +191,6 @@ void Game::check_snake_eat_food(){
 
         if(head_pos.x >= food_pos.x && head_pos.x < food_pos.x + 33)
             if(head_pos.y >= food_pos.y && head_pos.y < food_pos.y + 33){
-
-                std::cout << "[Score +100]" << std::endl;
             
                 m_score += 100;
 
@@ -194,8 +204,6 @@ void Game::check_snake_eat_food(){
 
         else if(head_pos.x+20 >= food_pos.x && head_pos.x+20 < food_pos.x + 33)
             if(head_pos.y+20 >= food_pos.y && head_pos.y+20 < food_pos.y + 33){
-
-                std::cout << "[Score +100]" << std::endl;
             
                 m_score += 100;
 
@@ -223,22 +231,22 @@ void Game::check_snake_eat_bomb(){
         if(head_pos.x >= food_pos.x && head_pos.x < food_pos.x + 33)
             if(head_pos.y >= food_pos.y && head_pos.y < food_pos.y + 33){
                 
-                m_boombs.erase(m_boombs.begin()+x);
-
                 is_game_over = true;
 
                 m_snake.is_game_over = true;
+
+                create_game_over_buttons();
 
             }
 
         else if(head_pos.x+20 >= food_pos.x && head_pos.x+20 < food_pos.x + 33)
             if(head_pos.y+20 >= food_pos.y && head_pos.y+20 < food_pos.y + 33){
 
-                m_boombs.erase(m_boombs.begin()+x);
-
                 is_game_over = true;
 
                 m_snake.is_game_over = true;
+
+                create_game_over_buttons();
 
             }
 
@@ -289,6 +297,9 @@ void Game::draw_game_over(){
 
     game_over_text.setPosition({560,300});
 
+    m_buttons[0].draw_to(m_window);
+    m_buttons[1].draw_to(m_window);
+
     m_window.draw(game_over_text);
 
 }
@@ -311,6 +322,12 @@ void Game::handle_events(){
                 close();
 
                 break;
+
+            case sf::Event::MouseButtonPressed:
+
+                handle_mouse_events();
+
+                break;
             
            default:
         
@@ -318,6 +335,52 @@ void Game::handle_events(){
                 break;
     
         }    
+
+    }
+
+}
+
+void Game::reset_game(){
+
+    m_score = 0;
+
+    is_game_over = false;
+
+    m_clock.restart();
+
+    m_snake.reset_snake();
+
+}
+
+void Game::handle_mouse_events(){
+
+    for(Button &button:m_buttons){
+
+        if(button.is_clicked()){
+
+            switch((ButtonType)button.get_button_type()){
+
+                case ButtonType::RETRY:
+
+                    std::cout << "[Retry]" << std::endl;
+
+                    reset_game();
+
+                    break;
+
+                case ButtonType::RETURN_TO_MAIN_MENU:
+
+                    std::cout << "[Returned to main menu]" << std::endl;
+
+                    close();
+
+                    system("Snake.exe");
+
+                    break;
+
+            }
+
+        }
 
     }
 

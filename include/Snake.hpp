@@ -44,6 +44,8 @@ class Snake{
 
         void update();
 
+        void reset_snake();
+
 };
 
 #endif

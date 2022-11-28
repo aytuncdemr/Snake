@@ -72,6 +72,24 @@ void Snake::check_direction_update(){
 
 }
 
+void Snake::reset_snake(){
+
+    m_current_direction = (Direction) (rand() % 4);
+
+    m_speed = 5;
+
+    is_game_over = false;
+
+    m_shapes.clear();
+
+    create_head_shape();
+
+    expand();
+    expand();
+    expand();
+
+}
+
 void Snake::expand(){
 
     sf::RectangleShape new_shape{sf::Vector2f(20,20)};

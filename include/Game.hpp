@@ -8,6 +8,17 @@
 #include "Snake.hpp"
 #include "Bomb.hpp"
 #include "Food.hpp"
+#include "Button.hpp"
+
+enum class ButtonType{
+
+    EXIT,
+    SINGLEPLAYER,
+    RETURN_TO_MAIN_MENU,
+    RETRY,
+    BACK
+
+};
 
 class Game{
 
@@ -26,6 +37,8 @@ class Game{
 
     uint32_t m_score;
 
+    std::vector<Button> m_buttons;
+
     public:
 
         Game(const uint32_t &window_width,const uint32_t &window_height,const std::string &window_title);
@@ -37,6 +50,8 @@ class Game{
         void close();
 
         void draw();
+
+        void reset_game();
 
         void draw_score();
 
@@ -59,6 +74,8 @@ class Game{
         void draw_game_over();
 
         void eatable_life_span_check();
+
+        void create_game_over_buttons();
 
         ~Game(){ 
             

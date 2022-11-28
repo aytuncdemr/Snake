@@ -6,14 +6,13 @@
 
 */
 
-#include "Game.hpp"
+#include "Menu.hpp"
 
 int main(){
 
-    Game game(1400,800,"Snake");
+    Menu menu;
 
-    game.start();
-
+    menu.launch();
 
     std::cout << std::endl;
 }
