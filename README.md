@@ -11,9 +11,9 @@ The more you eat apples the faster you become therefore, game becomes harder.
 You should not eat the bombs if you do so it's game over.
 
 Build:
-In order to build the source code you should create a build file and then create a release or debug file within that build file.
+In order to build the source code you should create a build folder and then create a release or debug folder within that build file.
 Then you should modify CMakeLists.txt according to your current working environment.
-
+*Do not forget to add correct sfml-dlls add to your release or debug folder*
 
 Screenshots:
 ![Capture](https://user-images.githubusercontent.com/112761562/204375742-d1e2b4e0-36d1-4ff1-b8be-402de80bfe42.PNG)
