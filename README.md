@@ -13,6 +13,7 @@ The more you eat apples the faster you become therefore, game becomes harder.
 You should not eat the bombs if you do so it's game over.
 
 Bugs:
+
 Sometimes game miscalculates bomb impacts.
 
 Build:
@@ -22,6 +23,7 @@ Then you should modify CMakeLists.txt according to your current working environm
 *Do not forget to add correct sfml-dlls add to your release or debug folder*
 
 Screenshots:
+
 ![Capture](https://user-images.githubusercontent.com/112761562/204375742-d1e2b4e0-36d1-4ff1-b8be-402de80bfe42.PNG)
 ![Untitled](https://user-images.githubusercontent.com/112761562/204375750-f6a8133c-606c-4685-9ddc-fc8b54192d99.png)
 ![Capture2](https://user-images.githubusercontent.com/112761562/204375763-684c8759-43a0-4351-a11b-534edc1da352.PNG)
