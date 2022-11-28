@@ -5,7 +5,7 @@ project(Snake)
 add_executable(Snake main.cpp ./src/Game.cpp ./src/Snake.cpp ./src/Food.cpp ./src/Bomb.cpp ./src/Menu.cpp ./src/Button.cpp ./src/ButtonText.cpp)
 
 target_include_directories(Snake PRIVATE ${CMAKE_SOURCE_DIR}/include)
-target_include_directories(Snake PRIVATE "C:/Program Files (x86)/C++/Packages/SFML-2.5.1/SFML-2.5.1/include")
+target_include_directories(Snake PRIVATE "YOUR_PATH_TO_SFML_INCLUDE_FOLDER")
 
 target_link_directories(Snake PRIVATE ${CMAKE_SOURCE_DIR}/build/Release)
 
