@@ -1,22 +1,22 @@
 README.md
 
-####Explanation:
+#### Explanation:
 
 Snake is a game that developed in C++ using Simple Fast Media Library (SFML).
 Main purpose of the game is getting the highest score you can.
 
-###Game explanation:
+### Game explanation:
 
 In Snake your goal is to get highest score you can.
 In order to do that you are trying to eat as many apples as you can.
 The more you eat apples the faster you become therefore, game becomes harder.
 You should not eat the bombs if you do so it's game over.
 
-###Bugs:
+### Bugs:
 
 Sometimes game miscalculates bomb impacts.
 
-###Build:
+### Build:
 
 In order to build the source code you should create a build folder and then create a release or debug folder within that build file.
 Then you should modify CMakeLists.txt according to your current working environment.
