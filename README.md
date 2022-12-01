@@ -1,6 +1,6 @@
 README.md
 
-#### Explanation:
+## Explanation:
 
 Snake is a game that developed in C++ using Simple Fast Media Library (SFML).
 Main purpose of the game is getting the highest score you can.
